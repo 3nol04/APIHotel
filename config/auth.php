@@ -36,10 +36,22 @@ return [
     */
 
     'guards' => [
+        'pelanggans' => [
+            'driver' => 'session',
+            'provider' => 'pelanggans',
+        ],
+        'pelanggan' => [
+            'driver' => 'sanctum',
+            'provider' => 'pelanggans',
+        ],
+        'api' => [
+                'driver' => 'sanctum',
+                'provider' => 'pelanggans',
+        ],  
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
-        ],
+            'provider' => 'pelanggans',
+        ]
     ],
 
     /*
@@ -60,9 +72,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'pelanggans' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\Pelanggan::class,
         ],
 
         // 'users' => [
