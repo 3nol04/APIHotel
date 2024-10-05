@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 class KamarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Dis play a listing of the resource.
      */
     public function index()
     {
