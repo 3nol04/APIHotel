@@ -73,7 +73,7 @@ class KamarController extends Controller
     public function update(Request $request, $kamar)
     {
         $val = $request->validate([
-            'no_kamar' => 'nullable|string',
+            'no_kamar' => 'nullable|string|unique:kamars,no_kamar,',
             'category_id' => 'nullable|integer',
             'price' => 'nullable|integer',
             'status_kamar' => '',
