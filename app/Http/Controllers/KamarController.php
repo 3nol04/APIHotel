@@ -37,9 +37,9 @@ class KamarController extends Controller
     {
         $val = $request->validate([
             'no_kamar' => 'unique:kamars,no_kamar',
-            'category_id' => 'unique:kamars,category_id',
+            'category_id' => 'required|exists:categories,id',
             'price' => 'integer|',
-           'status_kamar' => 'default:tersedia',
+           'status_kamar' => "required",
 
 
         ]);
