@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('no_kamar');
             $table->integer('price')->unsigned();
             $table->string('image_kamar', 255);
-            $table->String('status_kamar')->default('tersedia');
+            $table->String('status_kamar');
             $table->integer('category_id')->unsigned();
             $table->timestamps();
         });
