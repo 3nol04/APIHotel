@@ -39,7 +39,8 @@ class KamarController extends Controller
             'no_kamar' => 'unique:kamars,no_kamar',
             'category_id' => 'unique:kamars,category_id',
             'price' => 'integer|',
-            'status_kamar' => '',
+           'status_kamar' => 'default:tersedia',
+
 
         ]);
        
