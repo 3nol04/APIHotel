@@ -35,14 +35,14 @@ class KamarController extends Controller
      */
     public function store( Request $request)
     {
-        $val = $request->validate([
-            'no_kamar' => 'unique:kamars,no_kamar',
-            'category_id' => 'required|exists:categories,category_id',
-            'price' => 'integer|',
-           'status_kamar' => "required|string",
+       $val = $request->validate([
+    'no_kamar' => 'required|unique:kamars,no_kamar',
+    'category_id' => 'required|exists:categories,category_id',
+    'price' => 'required|integer',
+    'status_kamar' => 'required|string',
+]);
 
-
-        ]);
+    
        
         $kamar = Kamar::create($val);
         $data ['status']= 200;
