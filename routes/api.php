@@ -34,6 +34,6 @@ Route :: middleware('auth:pelanggan')->group(function () {
 
     Route ::get('/transaksi', [TransaksiController::class,'index']);
     Route ::patch ('/transaksi/{id}', [TransaksiController::class, 'update']);
-    Route ::post('/transaksi', [TransaksiController::class, 'store']);
+    Route ::post('/transaksiadd', [TransaksiController::class, 'store']);
     Route ::delete ('/transaksi/{id}', [TransaksiController::class, 'destroy']);
 });
