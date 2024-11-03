@@ -51,7 +51,16 @@ class AuthController extends Controller
         }
     }
 
+   public function getPelayan($id)
+{
+    $pelayan = Pelanggan::where('id', $id)->first();
 
+    if ($pelayan) {
+        return response()->json($pelayan);
+    } else {
+        return response()->json(['message' => 'Pelanggan tidak ditemukan'], 404);
+    }
+}
     public function logout(Request $request)
     {
         // Ambil pengguna dari guard 'pelanggan'
