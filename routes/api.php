@@ -13,6 +13,7 @@ Route::get('/user', function (Request $request) {
 Route :: post('/register', [AuthController::class, 'register']);
 Route :: post('/login', [AuthController::class, 'login']);
 Route :: post('/logout', [AuthController::class, 'logout']);
+Route::get('/pelayan/{id}', [AuthController::class, 'getPelayan']);
 
 //Router Kamar
 
@@ -24,6 +25,7 @@ Route :: middleware('auth:pelanggan')->group(function () {
     Route ::post('/kamar', [KamarController::class, 'store']);
     Route ::patch('/kamar/{id}', [KamarController::class, 'update']);
     Route ::delete('/kamar/{id}', [KamarController::class, 'destroy']);
+
     
     //Router Category
     Route ::post ('/addcategory', [CategoryController::class, 'store']);
