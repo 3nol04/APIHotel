@@ -87,7 +87,9 @@ class TransaksiController extends Controller
     public function update(Request $request,  $transaksi)
     {
         $validate = $request -> validate([
-            'id_transaksi' => 'required'
+            'id_transaksi' => 'required',
+            'id_kamar' => 'required',
+            'id_pelanggan' => 'required',
         ]);
 
         $result = Transaksi::where('id_transaksi',$transaksi)->update($validate);
