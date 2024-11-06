@@ -105,14 +105,20 @@ class TransaksiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $transaksi)
-    {
-        $show = Transaksi:: with('id_transaksi')->get();
-        $result = Transaksi :: where('id_transaksi', $transaksi->id_transaksi);
+    public function destroy($transaksi)
+{
+    $result = Transaksi::where('id_transaksi', $transaksi->id_transaksi)->first();
+    
+    if ($result) {
         $result->delete();
-        $data ['status']= 200;
-        $data ['message']= 'Success';
-        $data ['transaksi'] = $show;
-        return response()->json($data,Response::HTTP_OK);
+        $data['status'] = 200;
+        $data['message'] = 'Success';
+        $data['transaksi'] = $result; // Menyimpan data transaksi yang dihapus
+    } else {
+        $data['status'] = 404;
+        $data['message'] = 'Transaksi not found';
     }
+    
+    return response()->json($data, Response::HTTP_OK);
+}
 }
