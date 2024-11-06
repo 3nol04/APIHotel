@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,14 +14,22 @@ class TransaksiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
         $pelanggan = Auth::guard('pelanggan')->user();
         $transaksi = Transaksi::with('kamar')->get();
-        $data['status'] = 200;
-        $data['message'] = 'Success';
-        $data['transaksi'] = $transaksi;
-        $data['pelanggan'] = $pelanggan;
-        return response()->json($data, Response::HTTP_OK);
+        $data ['status']= 200;
+        $data ['message']= 'Success';
+        $data ['transaksi'] = $transaksi;
+        $data ['pelanggan'] = $pelanggan;
+        return response()->json($data,Response::HTTP_OK);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -57,51 +66,51 @@ class TransaksiController extends Controller
     }
     
     /**
+     * Display the specified resource.
+     */
+    public function show(Transaksi $transaksi)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Transaksi $transaksi)
+    {
+        //
+    }
+
+    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_transaksi)
+    public function update(Request $request,  $transaksi)
     {
-        $validate = $request->validate([
-            'id_transaksi' => 'required',
-            'id_kamar' => 'required',
-            'id_pelanggan' => 'required',
+        $validate = $request -> validate([
+            'id_transaksi' => 'required'
         ]);
 
-        $result = Transaksi::where('id_transaksi', $id_transaksi)->update($validate);
+        $result = Transaksi::where('id_transaksi',$transaksi)->update($validate);
 
-        if ($result) {
+        if ($result){
             $data['success'] = true;
-            $data['message'] = "Data transaksi berhasil diupdate";
-            $data['result'] = $result;
-            return response()->json($data, Response::HTTP_OK);
+            $data['message'] = "Data transaksi behasil di update";
+            $data['result' ] = $result;
+            return response()->json($data,Response::HTTP_OK);
         }
-
-        return response()->json([
-            'status' => 404,
-            'message' => 'Transaksi tidak ditemukan'
-        ], Response::HTTP_NOT_FOUND);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id_transaksi)
+    public function destroy( $transaksi)
     {
-        // Pastikan mencari data berdasarkan UUID
-        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->first();
-
-        if ($transaksi) {
-            // Hapus transaksi jika ditemukan
-            $transaksi->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Success'
-            ], Response::HTTP_OK);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Transaksi tidak ditemukan'
-            ], Response::HTTP_NOT_FOUND);
-        }
+        $show = Transaksi:: with('id_transaksi')->get();
+        $result = Transaksi :: where('id_transaksi', $transaksi);
+        $result->delete();
+        $data ['status']= 200;
+        $data ['message']= 'Success';
+        $data ['transaksi'] = $show;
+        return response()->json($data,Response::HTTP_OK);
     }
 }
