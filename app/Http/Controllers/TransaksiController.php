@@ -107,7 +107,7 @@ class TransaksiController extends Controller
      */
     public function destroy($transaksi)
 {
-    $result = Transaksi::where('id_transaksi', $transaksi->id_transaksi)->first();
+    $result = Transaksi::where('id_transaksi', $transaksi)->first();
     
     if ($result) {
         $result->delete();
