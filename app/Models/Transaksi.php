@@ -11,7 +11,7 @@ class Transaksi extends Model
     use HasFactory,HasUuids;
 
     protected $primaryKey = 'id_transaksi';
-    protected $guarded = ['id_transaksi'];
+    protected $guarded = [];
 
     public function kamar()
     {
