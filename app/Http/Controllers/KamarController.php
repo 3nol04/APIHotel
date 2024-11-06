@@ -108,22 +108,15 @@ class KamarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-     public function destroy( $id_transaksi)
+       public function destroy(Kamar $kamar)
     {
-        // Pastikan mencari data berdasarkan UU
-        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->first();
-        if ($transaksi) {
-            // Hapus transaksi jika ditemukan
-            $transaksi->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Success'
-            ], Response::HTTP_OK);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Transaksi tidak ditemukan'
-            ], Response::HTTP_NOT_FOUND);
-        }
+        $show = Kamar:: with('kategori')->get();    
+        $result = Kamar :: where('id_kamar', $kamar->id_kamar); 
+        $result->delete();
+        $data ['status']= 200;
+        $data ['message']= 'Success';
+        $data ['kamar'] = $show;
+        return response()->json($data,Response::HTTP_OK);
     }
+    
 }
