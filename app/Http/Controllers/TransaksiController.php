@@ -103,22 +103,20 @@ class TransaksiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-  public function destroy( $id_transaksi)
-    {
-        // Pastikan mencari data berdasarkan UU
-        $transaksi = Transaksi::where('id_transaksi', $id_transaksi)->first();
-        if ($transaksi) {
-            // Hapus transaksi jika ditemukan
-            $transaksi->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Success'
-            ], Response::HTTP_OK);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Transaksi tidak ditemukan'
-            ], Response::HTTP_NOT_FOUND);
-        }
-    }
+  public function destroy(Kamar $kamar)
+{
+    // Hapus data berdasarkan `id_kamar`
+    Kamar::where('id_kamar', $kamar->id_kamar)->delete();
+
+    // Ambil ulang data kamar yang tersisa
+    $show = Kamar::with('kategori')->get();
+
+    // Buat respons JSON
+    return response()->json([
+        'status' => 200,
+        'message' => 'Kamar berhasil dihapus',
+        'kamar' => $show
+    ], Response::HTTP_OK);
+}
+    
 }
