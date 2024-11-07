@@ -30,7 +30,7 @@ Route :: middleware('auth:pelanggan')->group(function () {
     //Router Category
     Route ::post ('/addcategory', [CategoryController::class, 'store']);
     Route ::patch ('/category/{id}', [CategoryController::class, 'update']);
-    Route ::delete ('/category/{id}', [CategoryController::class, 'destroy']);
+    Route ::delete ('/categorydelete/{id}', [CategoryController::class, 'destroy']);
 
     Route ::get('/transaksi', [TransaksiController::class,'index']);
     Route ::patch ('/transaksi/{id}', [TransaksiController::class, 'update']);
