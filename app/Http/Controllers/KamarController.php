@@ -111,20 +111,15 @@ class KamarController extends Controller
     use Symfony\Component\HttpFoundation\Response;
 
 public function destroy(Kamar $kamar)
-{
-
-    Kamar::where('id_kamar', $kamar)->delete();
-
-
-    $show = Kamar::with('kategori')->get();
-
-
-    return response()->json([
-        'status' => 200,
-        'message' => 'Kamar berhasil dihapus',
-        'kamar' => $show
-    ], Response::HTTP_OK);
-}
+    {
+        $show = Kamar:: with('kategori')->get();    
+        $result = Kamar :: where('id_kamar', $kamar->id_kamar); 
+        $result->delete();
+        $data ['status']= 200;
+        $data ['message']= 'Success';
+        $data ['kamar'] = $show;
+        return response()->json($data,Response::HTTP_OK);
+    }
 
     
 }
