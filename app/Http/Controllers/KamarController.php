@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Kamar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Symfony\Component\HttpFoundation\Response;
 
 
 class KamarController extends Controller
@@ -109,7 +108,6 @@ class KamarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    use Symfony\Component\HttpFoundation\Response;
 
 public function destroy(Kamar $kamar)
     {
