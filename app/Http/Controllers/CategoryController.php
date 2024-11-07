@@ -111,7 +111,6 @@ class CategoryController extends Controller
      $result->delete();
      $data ['status']= 200;
      $data ['message']= 'Success';
-     $data ['category'] = $show;
      return response()->json($data,Response::HTTP_OK);
     }
 }
