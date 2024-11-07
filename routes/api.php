@@ -24,7 +24,7 @@ Route :: middleware('auth:pelanggan')->group(function () {
 
     Route ::post('/kamar', [KamarController::class, 'store']);
     Route ::patch('/kamar/{id}', [KamarController::class, 'update']);
-    Route ::delete('/kamar/{id}', [KamarController::class, 'destroy']);
+    Route ::delete('/kamardelete/{id}', [KamarController::class, 'destroy']);
 
     
     //Router Category
