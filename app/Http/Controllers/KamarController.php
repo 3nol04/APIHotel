@@ -109,16 +109,25 @@ class KamarController extends Controller
      * Remove the specified resource from storage.
      */
 
-public function destroy(Kamar $kamar)
-    {
-        $show = Kamar:: with('kategori')->get();    
-        $result = Kamar :: where('id_kamar', $kamar->id_kamar); 
-        $result->delete();
-        $data ['status']= 200;
-        $data ['message']= 'Success';
-        $data ['kamar'] = $show;
-        return response()->json($data,Response::HTTP_OK);
+public function destroy($id)
+{
+    $kamar = Kamar::find($id); // Cari kamar berdasarkan ID
+
+    if (!$kamar) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Kamar not found'
+        ], 404);
     }
+
+    $kamar->delete(); // Hapus kamar
+
+    return response()->json([
+        'status' => 200,
+        'message' => 'Kamar successfully deleted'
+    ], 200);
+}
+
 
     
 }
