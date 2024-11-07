@@ -105,12 +105,27 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
-    {
-     $result = Category :: where('category_id', $category->category_id); 
-     $result->delete();
-     $data ['status']= 200;
-     $data ['message']= 'Success';
-     return response()->json($data,Response::HTTP_OK);
+   ublic function destroy($categoryId)
+{
+    // Cari kategori berdasarkan ID
+    $category = Category::find($categoryId); 
+
+    // Cek apakah kategori ada
+    if (!$category) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Category not found'
+        ], Response::HTTP_NOT_FOUND);
     }
+
+    // Hapus kategori
+    $category->delete();
+
+    // Mengembalikan respon sukses
+    return response()->json([
+        'status' => 200,
+        'message' => 'Category successfully deleted',
+        'category' => $category
+    ], Response::HTTP_OK);
+}
 }
