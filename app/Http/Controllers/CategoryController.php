@@ -105,7 +105,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-   ublic function destroy($categoryId)
+   public function destroy($categoryId)
 {
     // Cari kategori berdasarkan ID
     $category = Category::find($categoryId); 
