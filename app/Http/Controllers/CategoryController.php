@@ -107,7 +107,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-     $show = Category:: with('kamar')->get();    
      $result = Category :: where('category_id', $category->category_id); 
      $result->delete();
      $data ['status']= 200;
